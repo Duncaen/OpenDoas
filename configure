@@ -1,30 +1,54 @@
 #!/bin/sh
 
+die() {
+	printf "$1\n" >&2
+	exit 1
+}
+
+usage() {
+	cat <<EOF
+usage: configure [options] [settings]
+
+  --prefix=PREFIX        installation prefix [/usr]
+  --exec-prefix=EPREFIX  installation prefix for executable files [PREFIX]
+  --bindir=DIR           user executables [PREFIX/bin]
+  --datadir=DIR          architecture-independent data files [PREFIX/share]
+  --mandir=DIR           manual pages [DATADIR/man]
+  --sysconfdir=DIR       directory for configuration files [/etc]
+  --pamdir=DIR           PAM directory [SYSCONFDIR/pam.d]
+
+  --build=build-alias    a cpu-vendor-opsys for the system where the application will be built
+  --host=host-alias      a cpu-vendor-opsys for the system where the application will run
+  --target=target-alias  the machine that CC will produce code for
+
+  --enable-debug         enable debugging
+  --enable-seccomp       enable seccomp
+  --enable-static        prepare for static build
+
+  --help, -h             display this help and exit
+EOF
+	exit 0
+}
+
 for x; do
 	opt=${x%%=*}
 	var=${x#*=}
 	case "$opt" in
-	--enable-debug) DEBUG=yes;;
 	--prefix) PREFIX=$var;;
 	--exec-prefix) EPREFIX=$var;;
 	--bindir) BINDIR=$var;;
-	--mandir) MANDIR=$var;;
 	--datadir) SHAREDIR=$var;;
+	--mandir) MANDIR=$var;;
+	--sysconfdir) SYSCONFDIR=$var;;
+	--pamdir) PAMDIR=$var;;
 	--build) BUILD=$var;;
 	--host) HOST=$var;;
 	--target) TARGET=$var;;
-	--includedir) INCLUDEDIR=$var;;
-	--sysconfdir) SYSCONFDIR=$var;;
-	--pamdir) PAMDIR=$var;;
-	--localstatedir) LOCALSTATEDIR=$var;;
-	--libdir) LIBDIR=$var;;
-	--datadir|--infodir) ;; # ignore autotools
-	--verbose) unset SILENT;;
-	--pkgconfigdir) PKGCONFIGDIR=$var;;
-	--enable-static) BUILD_STATIC=yes;;
+	--enable-debug) DEBUG=yes;;
 	--enable-seccomp) BUILD_SECCOMP=yes;;
-	--help) usage;;
-	*) echo "$0: WARNING: unknown option $opt" >&2;;
+	--enable-static) BUILD_STATIC=yes;;
+	--help|-h) usage;;
+	*) die "Error: unknown option $opt";;
 	esac
 done
 
@@ -35,8 +59,8 @@ cat <<EOF >>$CONFIG_MK
 DESTDIR  ?=	/
 PREFIX   ?=	${PREFIX:="/usr"}
 EPREFIX  ?=	${EPREFIX:="${PREFIX}"}
-SHAREDIR ?=	${SHAREDIR:="${PREFIX}/share"}
 BINDIR   ?=	${BINDIR:="${PREFIX}/bin"}
+SHAREDIR ?=	${SHAREDIR:="${PREFIX}/share"}
 MANDIR   ?=	${MANDIR:="${SHAREDIR}/man"}
 SYSCONFDIR?=	${SYSCONFDIR:="/etc"}
 PAMDIR   ?=	${PAMDIR:="${SYSCONFDIR}/pam.d"}
@@ -75,6 +99,12 @@ esac
 
 [ -n "$OS_CFLAGS" ] && \
 	printf 'CFLAGS   +=	%s\n' "$OS_CFLAGS" >>$CONFIG_MK
+
+[ -n "$DEBUG" ] && \
+	printf 'CFLAGS   +=	-O0 -g\n' >>$CONFIG_MK
+
+[ -n "$BUILD_STATIC" ] && \
+	printf 'CFLAGS   +=	-static\n' >>$CONFIG_MK
 
 # Add CPPFLAGS/CFLAGS/LDFLAGS to CC for testing features
 XCC="${CC:=clang} $CFLAGS $OS_CFLAGS $CPPFLAGS $LDFLAGS"
