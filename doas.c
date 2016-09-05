@@ -46,8 +46,14 @@ version(void)
 static void __dead
 usage(void)
 {
+#ifdef HAVE_BSD_AUTH_H
 	fprintf(stderr, "usage: doas [-nsv] [-a style] [-C config] [-u user]"
 	    " command [args]\n");
+#else
+	fprintf(stderr, "usage: doas [-nsv] [-C config] [-u user]"
+	    " command [args]\n");
+#endif
+	    
 	exit(1);
 }
 
