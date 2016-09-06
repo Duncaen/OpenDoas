@@ -25,7 +25,7 @@ usage: configure [options]
   --enable-static        prepare for static build
 
   --without-pam          disable pam support
-  --without-pam          disable shadow support
+  --without-shadow       disable shadow support
 
   --help, -h             display this help and exit
 EOF
