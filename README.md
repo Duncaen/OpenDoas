@@ -28,6 +28,10 @@ echo "permit :admin" | sudo tee /etc/doas.conf
 
 Oh the irony, using `sudo` to install `doas`!
 
+There are pre-built Debian stable (jessie) packages available here:
+
+https://software.opensuse.org/download.html?project=home%3AHead_on_a_Stick%3AOpenDoas&package=opendoas
+
 ## About the port
 
 As much as possible I've attempted to stick to `doas` as tedu desired
