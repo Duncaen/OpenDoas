@@ -340,7 +340,9 @@ main(int argc, char **argv)
 	char cwdpath[PATH_MAX];
 	const char *cwd;
 	char **envp;
+#ifdef HAVE_BSD_AUTH_H
 	char *login_style = NULL;
+#endif
 
 	setprogname("doas");
 
