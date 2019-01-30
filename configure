@@ -27,7 +27,7 @@ usage: configure [options]
   --without-pam          disable pam support
   --without-shadow       disable shadow support
 
-  --without-timestamp    disable timestamp support
+  --with-timestamp       enable timestamp support
 
   --help, -h             display this help and exit
 EOF
