@@ -1,5 +1,6 @@
 doas
 
+parse.c
 version.h
 
 *.a

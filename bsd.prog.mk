@@ -42,6 +42,7 @@ clean:
 	rm -f ${OBJS}
 	rm -f ${OBJS:.o=.d}
 	rm -f ${PROG}
+	rm -f parse.c
 
 -include ${OBJS:.o=.d} ${OPENBSD:.o=.d}
 
