@@ -7,7 +7,7 @@ MAN=	doas.1 doas.conf.5
 
 BINOWN= root
 BINGRP= root
-BINMODE=4111
+BINMODE=4755
 
 CFLAGS+= -I${CURDIR}
 COPTS+=	-Wall -Wextra -Werror -pedantic
