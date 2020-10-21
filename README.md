@@ -43,3 +43,19 @@ similar to sudo.
 
 See the comment block in `timestamp.c` for an in-depth description on how
 timestamps are created and checked to be as safe as possible.
+
+### Install OpenDoas on Debian
+
+root:
+```
+apt-get update
+apt-get upgrade
+apt-get install gcc
+apt-get install bison
+apt-get install make
+git clone https://github.com/CiekaweRysiePL/OpenDoas
+cd OpenDoas
+./configure
+make
+make install
+```
