@@ -7,6 +7,8 @@ fraction of the codebase.
 
 At the moment only linux with GLIBC or musl libc is supported and tested.
 
+Please note: This is also not original, it is just to make changes in README
+You can also clone git with `git clone https://github.com/Duncaen/OpenDoas`
 
 ## Install OpenDoas on Debian
 
