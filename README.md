@@ -48,14 +48,28 @@ timestamps are created and checked to be as safe as possible.
 
 root:
 ```
-apt-get update
-apt-get upgrade
-apt-get install gcc
-apt-get install bison
-apt-get install make
-git clone https://github.com/CiekaweRysiePL/OpenDoas
-cd OpenDoas
-./configure
-make
-make install
+# apt-get update
+# apt-get upgrade
+# apt-get install gcc
+# apt-get install bison
+# apt-get install make
+# git clone https://github.com/CiekaweRysiePL/OpenDoas
+# cd OpenDoas
+# ./configure
+# make
+# make install
+```
+
+Limited user **with** sudo:
+```
+$ sudo apt-get update
+$ sudo apt-get upgrade
+$ sudo apt-get install gcc
+$ sudo apt-get install bison
+$ sudo apt-get install make
+$ git clone https://github.com/CiekaweRysiePL/OpenDoas
+$ cd OpenDoas
+$ ./configure
+$ make
+$ sudo make install
 ```
