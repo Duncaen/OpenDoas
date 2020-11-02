@@ -325,7 +325,7 @@ main(int argc, char **argv)
 	if (geteuid())
 		errx(1, "not installed setuid");
 
-	parseconfig("/etc/doas.conf", 1);
+	parseconfig(DOAS_CONF, 1);
 
 	/* cmdline is used only for logging, no need to abort on truncate */
 	(void)strlcpy(cmdline, argv[0], sizeof(cmdline));

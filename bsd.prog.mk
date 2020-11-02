@@ -6,6 +6,8 @@ CFLAGS  += -I${CURDIR}/libopenbsd ${COPTS} -MD -MP -Wno-unused-result
 
 include config.mk
 
+CFLAGS	+= -DDOAS_CONF="\"${SYSCONFDIR}/doas.conf\""
+
 OPENBSD := $(addprefix libopenbsd/,${OPENBSD})
 OBJS    := ${SRCS:.y=.c}
 OBJS    := ${OBJS:.c=.o}
