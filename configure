@@ -340,7 +340,7 @@ int main(void) {
 	setresuid(0, 0, 0);
 	return 0;
 }'
-check_func "setresuid" "$src" || die "system has no setresuid(2): not supported"
+check_func "setresuid" "$src"
 
 #
 # Check for closefrom().

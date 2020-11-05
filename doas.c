@@ -34,6 +34,11 @@
 #include "includes.h"
 #include "doas.h"
 
+#ifndef HAVE_SETRESUID
+#define setresgid(a, b, c)     setgid(a)
+#define setresuid(a, b, c)     setuid(a)
+#endif
+
 static void __dead
 usage(void)
 {
