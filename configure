@@ -340,7 +340,9 @@ int main(void) {
 	setresuid(0, 0, 0);
 	return 0;
 }'
-check_func "setresuid" "$src" || die "system has no setresuid(2): not supported"
+check_func "setresuid" "$src" || {
+	printf 'OPENBSD  +=	bsd-setres_id.o\n' >>$CONFIG_MK
+}
 
 #
 # Check for closefrom().

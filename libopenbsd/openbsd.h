@@ -64,4 +64,11 @@ const char * getprogname(void);
 void setprogname(const char *progname);
 #endif /* !HAVE_SETPROGNAME */
 
+#ifndef HAVE_SETRESGID
+int	setresgid(gid_t, gid_t, gid_t);
+#endif
+#ifndef HAVE_SETRESUID
+int	setresuid(uid_t, uid_t, uid_t);
+#endif
+
 #endif /* _LIB_OPENBSD_H_ */
