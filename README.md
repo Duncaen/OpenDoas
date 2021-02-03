@@ -47,7 +47,7 @@ test it yourself.
 A good starting point is probably the distribution maintained `/etc/pam.d/sudo`
 file.
 
-### Perist/Timestamp/Timeout
+### Persist/Timestamp/Timeout
 
 The persist feature is disabled by default and can be enabled with the configure
 flag `--with-timestamp`.
