@@ -52,7 +52,7 @@ for x; do
 	--mandir) MANDIR=$var ;;
 	--sysconfdir) SYSCONFDIR=$var ;;
 	--build) BUILD=$var ;;
-	--host) HOST=$var ;;
+	--host) HOSTCC=$var ;;
 	--target) TARGET=$var ;;
 	--enable-debug) DEBUG=yes ;;
 	--enable-static) BUILD_STATIC=yes ;;
@@ -82,13 +82,13 @@ cat <<! >$CONFIG_H
 if [ -z "$BUILD" ]; then
 	BUILD="$(uname -m)-unknown-$(uname -s | tr '[:upper:]' '[:lower:]')"
 fi
-if [ -z "$HOST" ]; then
+if [ -z "$HOSTCC" ]; then
 	[ -z "$TARGET" ] && TARGET=$BUILD
-	HOST=$TARGET
+	HOSTCC=$TARGET
 fi
 if [ -z "$TARGET" ]; then
-	[ -z "$HOST" ] && HOST=$BUILD
-	TARGET=$HOST
+	[ -z "$HOSTCC" ] && HOSTCC=$BUILD
+	TARGET=$HOSTCC
 fi
 
 if [ -z "$OS" ]; then
