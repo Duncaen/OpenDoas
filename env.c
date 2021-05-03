@@ -91,7 +91,7 @@ createenv(const struct rule *rule, const struct passwd *mypw,
     const struct passwd *targpw)
 {
 	static const char *copyset[] = {
-		"DISPLAY", "TERM",
+		"DISPLAY", "TERM", "XDG_RUNTIME_DIR", "WAYLAND_DISPLAY",
 		NULL
 	};
 	struct env *env;
